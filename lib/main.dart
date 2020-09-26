@@ -1,4 +1,8 @@
+import 'package:ecommerce_ui_app/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_ui_app/my_flutter_app_icons.dart';
+import 'package:material_design_icons_flutter/icon_map.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,9 +28,23 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
         backgroundColor: Colors.transparent,
+        elevation: 0.0,
         automaticallyImplyLeading: false,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(MyFlutterApp.align_left_icon_8, size: 20, color: Styles.mainColor,),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(MdiIcons.bellOutline, color: Styles.mainColor,),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: Column(
