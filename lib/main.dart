@@ -73,7 +73,7 @@ class MyHomePage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
                     "assets/images/GettyImages.jpg",
-                  )),
+                  ),),
               decoration: BoxDecoration(
                 color: Colors.transparent,
               ),
@@ -160,6 +160,33 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                 ))
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: Styles.mainPadding,
+        child: ListView(
+          children: [
+            Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Styles.mainColor,
+                    offset: Offset(0, 2),
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+
+            ),
+            TextField(
+              decoration: InputDecoration(
+                
+              ),
+            ),
           ],
         ),
       ),
