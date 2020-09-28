@@ -182,9 +182,28 @@ class MyHomePage extends StatelessWidget {
               ),
 
             ),
-            TextField(
-              decoration: InputDecoration(
-                
+            Container(
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Styles.mainColor,
+                    offset: Offset(0, 2),
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: TextField(
+                style: TextStyle(fontSize: 20),
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(0),
+                  prefixIcon: Icon(Icons.search, size: 30,),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30))
+                  ),
+                ),
               ),
             ),
           ],
