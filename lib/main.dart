@@ -9,7 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,6 +23,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  List<String> assets = [
+    'assets/categories/boys.jpg',
+    'assets/categories/girls.jpg',
+    'assets/categories/kids.jpg',
+    'assets/categories/man.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +39,11 @@ class MyHomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Icon(MyFlutterApp.align_left_icon_8, size: 20, color: Styles.mainColor,),
+            icon: Icon(
+              MyFlutterApp.align_left_icon_8,
+              size: 20,
+              color: Styles.mainColor,
+            ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -42,7 +52,10 @@ class MyHomePage extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 10.0),
-            child: Icon(MdiIcons.bellOutline, color: Styles.mainColor,),
+            child: Icon(
+              MdiIcons.bellOutline,
+              color: Styles.mainColor,
+            ),
           ),
         ],
       ),
@@ -69,11 +82,12 @@ class MyHomePage extends StatelessWidget {
             ),
             DrawerHeader(
               child: Container(
-                  height: 142,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    "assets/images/GettyImages.jpg",
-                  ),),
+                height: 142,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(
+                  "assets/images/GettyImages.jpg",
+                ),
+              ),
               decoration: BoxDecoration(
                 color: Colors.transparent,
               ),
@@ -142,30 +156,31 @@ class MyHomePage extends StatelessWidget {
             ),
             Expanded(
                 child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 65,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        'v1.0.1',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontSize: 20,
-                          color: const Color(0xffffffff),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                child: Center(
+                  child: Text(
+                    'v1.0.1',
+                    style: TextStyle(
+                      fontFamily: 'Avenir',
+                      fontSize: 20,
+                      color: const Color(0xffffffff),
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                ))
+                ),
+              ),
+            ))
           ],
         ),
       ),
       body: Padding(
         padding: Styles.mainPadding,
         child: ListView(
+          
           children: [
             Container(
               height: 40,
@@ -180,36 +195,74 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ],
               ),
-
-            ),
-            Container(
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Styles.mainColor,
-                    offset: Offset(0, 2),
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
               child: TextField(
                 style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                   isDense: true,
                   contentPadding: EdgeInsets.all(0),
-                  prefixIcon: Icon(Icons.search, size: 30,),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))
+                  prefixIcon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: Styles.mainColor,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
                   ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Categories',
+                  style: TextStyle(
+                    color: Styles.mainLabelsColors,
+                    fontSize: 24,
+                  ),
+                ),
+                Text(
+                  'See all',
+                  style: TextStyle(
+                    color: Styles.seconderLabelsColors,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            // ListView(
+            //   scrollDirection: Axis.horizontal,
+            //   children: assets
+            //       .map((asset) => Card(
+            //             child: Column(
+            //               children: [Image.asset(asset), Text('name')],
+            //             ),
+            //           ))
+            //       .toList(),
+            // ),
           ],
         ),
       ),
     );
   }
 }
-
