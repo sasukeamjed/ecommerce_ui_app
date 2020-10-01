@@ -180,7 +180,6 @@ class MyHomePage extends StatelessWidget {
       body: Padding(
         padding: Styles.mainPadding,
         child: ListView(
-          
           children: [
             Container(
               height: 40,
@@ -250,16 +249,96 @@ class MyHomePage extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            // ListView(
-            //   scrollDirection: Axis.horizontal,
-            //   children: assets
-            //       .map((asset) => Card(
-            //             child: Column(
-            //               children: [Image.asset(asset), Text('name')],
-            //             ),
-            //           ))
-            //       .toList(),
-            // ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: assets
+                    .map(
+                      (asset) => Container(
+                        height: 100,
+                        width: 130,
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Image.asset(
+                                  asset,
+                                  fit: BoxFit.fitWidth,
+                                  width: double.infinity,
+                                  alignment: Alignment.topCenter,
+                                ),
+                                flex: 3,
+                              ),
+                              Expanded(
+                                child: Text('name'),
+                                flex: 1,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Featured',
+                  style: TextStyle(
+                    color: Styles.mainLabelsColors,
+                    fontSize: 24,
+                  ),
+                ),
+                Text(
+                  'See all',
+                  style: TextStyle(
+                    color: Styles.seconderLabelsColors,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: assets
+                    .map(
+                      (asset) => Container(
+                    height: 300,
+                    width: 160,
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              asset,
+                              fit: BoxFit.fitWidth,
+                              width: double.infinity,
+                              alignment: Alignment.topCenter,
+                            ),
+                            flex: 3,
+                          ),
+                          Expanded(
+                            child: Text('name'),
+                            flex: 1,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+                    .toList(),
+              ),
+            ),
           ],
         ),
       ),
