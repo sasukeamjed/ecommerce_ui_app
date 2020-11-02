@@ -255,9 +255,13 @@ class MyHomePage extends StatelessWidget {
                 children: assets
                     .map(
                       (asset) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                         height: 100,
                         width: 130,
                         child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
                           child: Column(
                             children: [
                               Expanded(
