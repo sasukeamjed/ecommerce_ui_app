@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_ui_app/my_flutter_app_icons.dart';
 import 'package:material_design_icons_flutter/icon_map.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:badges/badges.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'ECommerce UI',
       theme: ThemeData(
         primarySwatch: Colors.grey,
@@ -28,6 +30,7 @@ class MyHomePage extends StatelessWidget {
     'assets/categories/girls.jpg',
     'assets/categories/kids.jpg',
     'assets/categories/man.jpg',
+    'assets/categories/woman.jpg',
   ];
 
   @override
@@ -52,9 +55,13 @@ class MyHomePage extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 10.0),
-            child: Icon(
-              MdiIcons.bellOutline,
-              color: Styles.mainColor,
+            child: Badge(
+              padding: EdgeInsets.all(4),
+              position: BadgePosition.topEnd(top: 17, end: 3),
+              child: Icon(
+                MdiIcons.bellOutline,
+                color: Styles.mainColor,
+              ),
             ),
           ),
         ],
@@ -233,7 +240,7 @@ class MyHomePage extends StatelessWidget {
                   'Categories',
                   style: TextStyle(
                     color: Styles.mainLabelsColors,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 Text(
@@ -247,46 +254,38 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: assets
-                    .map(
-                      (asset) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        height: 100,
-                        width: 130,
-                        child: Card(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.asset(
-                                  asset,
-                                  fit: BoxFit.fitWidth,
-                                  width: double.infinity,
-                                  alignment: Alignment.topCenter,
-                                ),
-                                flex: 3,
-                              ),
-                              Expanded(
-                                child: Text('name'),
-                                flex: 1,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
+                children: [
+                  GestureDetector(
+                    child: categoryContainer(imagePath: assets[0], categoryName: 'Boys'),
+                    onTap: (){},
+                  ),
+                  GestureDetector(
+                    child:categoryContainer(imagePath: assets[1], categoryName: 'Girls'),
+                    onTap: (){},
+                  ),
+                  GestureDetector(
+                    child: categoryContainer(imagePath: assets[2], categoryName: 'Kids'),
+                    onTap: (){},
+                  ),
+                  GestureDetector(
+                    child: categoryContainer(imagePath: assets[3], categoryName: 'Men'),
+                    onTap: (){},
+                  ),
+                  GestureDetector(
+                    child: categoryContainer(imagePath: assets[4], categoryName: 'Women'),
+                    onTap: (){},
+                  ),
+
+                ],
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,7 +294,7 @@ class MyHomePage extends StatelessWidget {
                   'Featured',
                   style: TextStyle(
                     color: Styles.mainLabelsColors,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 Text(
@@ -309,7 +308,7 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -317,25 +316,127 @@ class MyHomePage extends StatelessWidget {
                 children: assets
                     .map(
                       (asset) => Container(
-                    height: 300,
-                    width: 160,
-                    child: Card(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Image.asset(
-                              asset,
-                              fit: BoxFit.fitWidth,
-                              width: double.infinity,
-                              alignment: Alignment.topCenter,
+                        height: 250,
+                        width: 150,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 5.0),
+                          child: Card(
+                            elevation: 0.4,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
+                                    child: Image.asset(
+                                      asset,
+                                      fit: BoxFit.fitWidth,
+                                      width: double.infinity,
+                                      alignment: Alignment.topCenter,
+                                    ),
+                                  ),
+                                  flex: 3,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text("\$27.00"),
+                                            Icon(Icons.favorite_border),
+                                          ],
+                                        ),
+                                        Text("Woman T-Shirt", textAlign: TextAlign.left,),
+                                      ],
+                                    ),
+                                  ),
+                                  flex: 1,
+                                )
+                              ],
                             ),
-                            flex: 3,
                           ),
-                          Expanded(
-                            child: Text('name'),
-                            flex: 1,
-                          )
-                        ],
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Best Selling',
+                  style: TextStyle(
+                    color: Styles.mainLabelsColors,
+                    fontSize: 22,
+                  ),
+                ),
+                Text(
+                  'See all',
+                  style: TextStyle(
+                    color: Styles.seconderLabelsColors,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: assets
+                    .map(
+                      (asset) => Container(
+                    height: 250,
+                    width: 150,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 5.0),
+                      child: Card(
+                        elevation: 0.4,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
+                                child: Image.asset(
+                                  asset,
+                                  fit: BoxFit.fitWidth,
+                                  width: double.infinity,
+                                  alignment: Alignment.topCenter,
+                                ),
+                              ),
+                              flex: 3,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("\$27.00"),
+                                        Icon(Icons.favorite_border),
+                                      ],
+                                    ),
+                                    Text("Woman T-Shirt", textAlign: TextAlign.left,),
+                                  ],
+                                ),
+                              ),
+                              flex: 1,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -344,6 +445,47 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget categoryContainer({String imagePath, String categoryName}){
+    return Container(
+      height: 100,
+      width: 130,
+      child: Padding(
+        padding: EdgeInsets.only(right: 5),
+        child: Card(
+          child: Column(
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(5)),
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+                // child: Image.asset(
+                //   asset,
+                //   fit: BoxFit.fitWidth,
+                //   width: double.infinity,
+                //   alignment: Alignment.topCenter,
+                // ),
+                flex: 3,
+              ),
+              Expanded(
+                child: Center(
+                  child: Text(categoryName),
+                ),
+                flex: 1,
+              )
+            ],
+          ),
         ),
       ),
     );
