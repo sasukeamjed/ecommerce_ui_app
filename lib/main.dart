@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui_app/screens/boys.dart';
 import 'package:ecommerce_ui_app/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_ui_app/my_flutter_app_icons.dart';
@@ -262,7 +263,11 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     child: categoryContainer(imagePath: assets[0], categoryName: 'Boys'),
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context)=> BoysCategory()
+                      ));
+                    },
                   ),
                   GestureDetector(
                     child:categoryContainer(imagePath: assets[1], categoryName: 'Girls'),
